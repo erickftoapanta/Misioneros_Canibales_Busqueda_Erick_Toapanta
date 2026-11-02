@@ -42,4 +42,51 @@ def obtener_sucesores(estado: tuple) -> list:
 
     return sucesores
 
+def bfs(inicial=ESTADO_INICIAL, objetivo=ESTADO_OBJETIVO):
+    t_inicio = time.perf_counter()
+    frontera = deque([(inicial, [inicial])])
+    visitados = {inicial}
+    nodos_expandidos = 0
+
+    while frontera:
+        actual, camino = frontera.popleft()
+        nodos_expandidos += 1
+
+        if actual == objetivo:
+            t_ejecucion = time.perf_counter() - t_inicio
+            return camino, nodos_expandidos, t_ejecucion
+
+        for sucesor in obtener_sucesores(actual):
+            if sucesor not in visitados:
+                visitados.add(sucesor)
+                frontera.append((sucesor, camino + [sucesor]))
+
+    return None, nodos_expandidos, time.perf_counter() - t_inicio
+
+
+def dfs(inicial=ESTADO_INICIAL, objetivo=ESTADO_OBJETIVO):
+    t_inicio = time.perf_counter()
+    frontera = [(inicial, [inicial])]
+    visitados = set()
+    nodos_expandidos = 0
+
+    while frontera:
+        actual, camino = frontera.pop()
+
+        if actual in visitados:
+            continue
+
+        visitados.add(actual)
+        nodos_expandidos += 1
+
+        if actual == objetivo:
+            t_ejecucion = time.perf_counter() - t_inicio
+            return camino, nodos_expandidos, t_ejecucion
+
+        for sucesor in obtener_sucesores(actual):
+            if sucesor not in visitados:
+                frontera.append((sucesor, camino + [sucesor]))
+
+    return None, nodos_expandidos, time.perf_counter() - t_inicio
+
 
