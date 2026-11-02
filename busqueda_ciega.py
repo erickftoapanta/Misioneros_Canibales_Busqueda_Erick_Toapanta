@@ -89,4 +89,25 @@ def dfs(inicial=ESTADO_INICIAL, objetivo=ESTADO_OBJETIVO):
 
     return None, nodos_expandidos, time.perf_counter() - t_inicio
 
+def ejecutar_benchmarking():
+    camino_bfs, nodos_bfs, t_bfs = bfs()
+    camino_dfs, nodos_dfs, t_dfs = dfs()
 
+    print("=" * 65)
+    print("BENCHMARKING DE BUSQUEDA CIEGA: MISIONEROS Y CANIBALES")
+    print("=" * 65)
+    print(f"{'Métrica':<30} | {'BFS (Cola)':<14} | {'DFS (Pila)':<14}")
+    print("-" * 65)
+    print(f"{'Nodos Expandidos':<30} | {nodos_bfs:<14} | {nodos_dfs:<14}")
+    print(f"{'Tiempo de Ejecución (s)':<30} | {t_bfs:<14.6f} | {t_dfs:<14.6f}")
+    print(f"{'Longitud de la Solución':<30} | {len(camino_bfs)-1:<14} | {len(camino_dfs)-1:<14}")
+    print("=" * 65)
+    
+    print("\nCamino optimo hallado por BFS (M, C, Bote en orilla izquierda):")
+    for i, paso in enumerate(camino_bfs):
+        print(f"Paso {i}: {paso}")
+
+if __name__ == "__main__":
+    ejecutar_benchmarking()
+
+    
