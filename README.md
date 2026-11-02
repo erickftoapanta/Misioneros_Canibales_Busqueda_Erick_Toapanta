@@ -24,4 +24,4 @@ El código usa librerías estándar de Python (`time`, `collections`), por lo qu
 
 1. Clona este repositorio:
 ```bash
-git clone [https://github.com/erickftoapanta/Misioneros_Canibales_Busqueda_Erick_Toapanta.git](https://github.com/erickftoapanta/Misioneros_Canibales_Busqueda_Erick_Toapanta.git)
+git clone https://github.com/erickftoapanta/Misioneros_Canibales_Busqueda_Erick_Toapanta.git
