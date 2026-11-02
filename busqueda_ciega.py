@@ -25,4 +25,21 @@ def es_valido(estado: tuple) -> bool:
         return False
 
     return True
-    
+
+def obtener_sucesores(estado: tuple) -> list:
+    m_izq, c_izq, bote = estado
+    sucesores = []
+
+    for m, c in ACCIONES:
+        if bote == 1: # Bote viaja de izquierda a derecha
+            nuevo = (m_izq - m, c_izq - c, 0)
+        else:         # Bote viaja de derecha a izquierda
+            nuevo = (m_izq + m, c_izq + c, 1)
+
+        # Solo agregamos el estado si nadie es devorado
+        if es_valido(nuevo):
+            sucesores.append(nuevo)
+
+    return sucesores
+
+
